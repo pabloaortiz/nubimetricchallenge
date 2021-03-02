@@ -1,0 +1,61 @@
+﻿<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Challenge</title>
+
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+
+    <header>        
+        <div class="navbar navbar-dark bg-dark box-shadow">
+            <div class="container d-flex justify-content-between">
+                <a href="#" class="navbar-brand d-flex align-items-center">                    
+                    <strong>Challenge</strong>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main role="main">
+
+        <section class="jumbotron text-center">
+            <div class="container">
+                <h1 class="jumbotron-heading">Challenge</h1>
+                <p class="lead text-muted">Para generar los archivos JSON y csv de monedas presione el siguiente boton</p>
+                <p>
+                    <button id="btnGenerar" class="btn btn-primary my-2">Generar archivos</button>                    
+                </p>
+                <p id="mensaje"></p>
+            </div>
+        </section>
+    </main>
+
+    <footer class="text-muted">
+        <div class="container">            
+            <p>Challenge desarrollado por Ing. Pablo Alfredo Ortiz</p>            
+        </div>
+    </footer>
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+    <script>
+        $(function () {
+            $("#btnGenerar").click(function () {
+                var url = "@Url.Content("~/Home/Generar")";
+                $("#mensaje").html("Generando archivos...");
+                $.get(url, function (res) {
+                    $("#mensaje").html(res.mensaje + "<br/>" + res.jsonpath + "<br/>" + res.csvpath);
+                });
+            })
+        })
+    </script>
+</body>
+</html>
